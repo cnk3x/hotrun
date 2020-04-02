@@ -45,10 +45,7 @@ func (ch *Config) Run() error {
 		return fmt.Errorf("解析配置文件失败: %w", err)
 	}
 
-	log.SetLevel(cfg.Logger.Level)
-	log.SetName(cfg.Logger.Name)
-	log.ReportCaller(cfg.Logger.Caller)
-	log.ShowTime(cfg.Logger.Time)
+	log.Config(cfg.Logger.Level, cfg.Logger.Name, cfg.Logger.Caller,cfg.Logger.Time)
 
 	for _, hc := range cfg.HandlerConfigs {
 		find := ch.w.Find(func(hf *fswatch.Runner) bool {
